@@ -45,7 +45,7 @@ public class WelcomeActivity extends BaseActivity {
                     .load(Constant.start_figure)
                     .priority(Priority.IMMEDIATE)
                     .placeholder(R.mipmap.login_back)
-                    .error(R.mipmap.login_back)
+                    .error(R.color.white)
                     .override(ScreenUtils.getWidth(getApplicationContext()),ScreenUtils.getHeight(getApplicationContext()))
                     .into(welcome_img);
         });

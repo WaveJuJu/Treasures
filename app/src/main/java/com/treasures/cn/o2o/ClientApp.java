@@ -9,10 +9,8 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.widget.PopupWindow;
 
-import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.treasures.cn.handler.DataInitializer;
-import com.treasures.cn.o2o.activity.MainActivity;
 import com.treasures.cn.utils.UtilBox;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.UMShareAPI;
@@ -55,7 +53,6 @@ public class ClientApp extends Application {
         StrictMode.setVmPolicy(builder.build());
 
         CrashReport.initCrashReport(getApplicationContext(), "66cc05226f", false);
-        Beta.canShowUpgradeActs.add(MainActivity.class);
     }
 
     /**

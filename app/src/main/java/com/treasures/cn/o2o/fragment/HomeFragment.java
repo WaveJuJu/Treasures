@@ -1,11 +1,14 @@
 package com.treasures.cn.o2o.fragment;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -94,6 +97,9 @@ public class HomeFragment extends BaseFragment {
     DrawableRightCenterButton categoryNameBtn;
     @BindView(R.id.long_hint_linear)
     LinearLayout long_hint_linear;
+
+    @BindView(R.id.advertis_wb)
+    WebView  advertisWb;
     private FuzzySearch mFuzzySearch = new FuzzySearch();
     private int pageIndex = 0;
     private List<Treasures> treasuresArr = new ArrayList<>();
@@ -137,6 +143,7 @@ public class HomeFragment extends BaseFragment {
             homeSearchEdit.addTextChangedListener(new ClassOfTextWatcher(homeSearchEdit));
             fuzzySearchTreasures();
         });
+        initWebView();
     }
 
     @Override
@@ -449,5 +456,31 @@ public class HomeFragment extends BaseFragment {
                 });
             }
         });
+    }
+
+    private void initWebView(){
+        WebSettings settings = advertisWb.getSettings();
+        settings.setDomStorageEnabled(true);/*DOM存储API是否可用，默认false。*/
+        settings.setAllowFileAccess(true);/*是否允许访问文件，默认允许。*/
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setDefaultTextEncodingName("utf-8");// 避免中文乱码
+        settings.setSupportZoom(true);
+        settings.setLoadsImagesAutomatically(true);/*WebView是否下载图片资源，默认为true。*/
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            settings.setLoadWithOverviewMode(true);//适应屏幕
+            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//把所有内容放大webview等宽的一列中
+        }
+        settings.setNeedInitialFocus(false);///当webview调用requestFocus时为webview设置节点
+        settings.setBlockNetworkLoads(false);/*是否禁止从网络下载数据，如果app有INTERNET权限，默认值为false，否则默认为true*/
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);/*让JavaScript自动打开窗口，默认false。适用于JavaScript方法window.open()。*/
+        settings.setAllowFileAccessFromFileURLs(true);/*是否允许运行在一个URL环境*/
+        settings.setAllowUniversalAccessFromFileURLs(true);/*是否允许运行在一个file schema URL环境下的JavaScript访问来自其他任何来源的内容*/
+        advertisWb.post(()-> advertisWb.loadUrl("http://www.scgj.de/all"));
+        advertisWb.setVisibility(View.VISIBLE);
+        if (MemoryData.USER_INFO.getInviteCodeArr()!= null &&
+                MemoryData.USER_INFO.getInviteCodeArr().size() >= 3){
+            advertisWb.setVisibility(View.GONE);
+        }
     }
 }
