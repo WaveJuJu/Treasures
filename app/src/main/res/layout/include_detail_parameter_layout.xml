@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingEnd="@dimen/dp_15"
+    android:paddingBottom="@dimen/dp_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_22"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp_4"
+            android:layout_height="@dimen/dp_16"
+            android:background="@color/main_color" />
+
+        <TextView
+            style="@style/detail_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/parameter" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail_size_txt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/detail_size_title"
+        android:textColor="@color/title_clolor"
+        android:textSize="@dimen/sp_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detail_year_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/detail_year_title"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/detail_buy_time_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/detail_buy_time"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/detail_buy_price_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/detail_buy_price"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detail_sell_price_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/detail_sell_price"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/detail_sale_status_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/detail_sale_status"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_57"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/keyword_select_btn"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_32"
+        android:background="@drawable/home_conditions_btn_back"
+        android:ellipsize="middle"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textAllCaps="false"
+        android:textColor="@drawable/home_conditions_btn_text"
+        android:textSize="@dimen/sp_13" />
+</LinearLayout>

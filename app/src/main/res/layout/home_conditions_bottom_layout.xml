@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.treasures.cn.customView.DrawableRightCenterButton
+        android:id="@+id/category_name_btn"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_32"
+        android:background="@drawable/home_conditions_btn_back"
+        android:drawableEnd="@mipmap/down1"
+        android:text="@string/category_name"
+        android:textAllCaps="false"
+        android:textColor="@drawable/home_conditions_btn_text"
+        android:textSize="@dimen/sp_13" />
+
+    <View
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/can_sale_btn"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_32"
+        android:background="@drawable/home_conditions_btn_back"
+        android:gravity="center"
+        android:text="@string/can_sale"
+        android:textAllCaps="false"
+        android:textColor="@drawable/home_conditions_btn_text"
+        android:textSize="@dimen/sp_13" />
+
+    <View
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/cant_sale_btn"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_32"
+        android:background="@drawable/home_conditions_btn_back"
+        android:gravity="center"
+        android:text="@string/cant_sale"
+        android:textAllCaps="false"
+        android:textColor="@drawable/home_conditions_btn_text"
+        android:textSize="@dimen/sp_13" />
+
+    <View
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/yet_sale_btn"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_32"
+        android:background="@drawable/home_conditions_btn_back"
+        android:gravity="center"
+        android:text="@string/yet_sale"
+        android:textAllCaps="false"
+        android:textColor="@drawable/home_conditions_btn_text"
+        android:textSize="@dimen/sp_13" />
+</LinearLayout>

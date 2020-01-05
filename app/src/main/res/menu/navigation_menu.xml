@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="UnusedAttribute">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/home_unselected"
+        android:title="@string/home_title" />
+
+    <item
+        android:id="@+id/navigation_category"
+        android:icon="@mipmap/category_unselected"
+        android:title="@string/category_title" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@mipmap/user_unselected"
+        android:title="@string/user_title" />
+</menu>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_alignParentTop="true"
+        android:background="@color/main_color">
+
+        <ImageView
+            android:id="@+id/logo_txt"
+            android:layout_width="@dimen/dp_90"
+            android:layout_height="@dimen/dp_31"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_15"
+            android:gravity="center"
+            android:src="@mipmap/home_logo"/>
+
+        <com.treasures.cn.customView.CenterEdittext
+            android:id="@+id/home_search_edit"
+            style="@style/search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_31"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_15"
+            android:layout_toEndOf="@+id/logo_txt"
+            android:background="@drawable/search_back_radiu"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            app:drawableIcon="@mipmap/search"
+            app:isCenter="false"
+            app:isShowHint="true"
+            app:isShowLeft="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/conditions_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_90"
+        android:layout_below="@+id/title_rela"
+        android:background="@drawable/home_conditions_back"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/home_conditions_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <include
+            layout="@layout/home_conditions_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/conditions_linear"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/home_content_back"
+        android:visibility="visible"/>
+    <LinearLayout
+        android:id="@+id/notDataLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_120"
+        android:layout_below="@+id/conditions_linear"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="@dimen/dp_121"
+            android:layout_height="@dimen/dp_110"
+            android:src="@mipmap/placeholder"/>
+        <TextView
+            android:id="@+id/not_data_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/home_hint"
+            android:textColor="@color/gray_93"
+            android:textSize="@dimen/sp_16"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/long_hint_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dp_200"
+        android:layout_below="@+id/conditions_linear">
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/long_click"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_93"
+            android:textSize="@dimen/sp_16"
+            android:layout_marginStart="@dimen/dp_5"
+            android:text="@string/do_hint"/>
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/add_treasures_btn"
+        android:layout_width="@dimen/dp_58"
+        android:layout_height="@dimen/dp_58"
+        android:src="@mipmap/new_icon"
+        android:background="@color/transparent"
+        android:layout_marginEnd="-3dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:scaleType="centerInside"/>
+</RelativeLayout>

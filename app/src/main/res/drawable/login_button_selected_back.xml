@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--按下点击-->
+    <item android:drawable="@drawable/login_button_enabled_back"
+        android:state_enabled="true"
+        android:state_pressed="true"/>
+
+    <!--正常状态-->
+    <item android:drawable="@drawable/login_button_unenabled_back"
+        android:state_enabled="false"
+        android:state_pressed="false"/>
+</selector>

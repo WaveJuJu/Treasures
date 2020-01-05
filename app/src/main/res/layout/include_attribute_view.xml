@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingEnd="@dimen/dp_15">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+
+        <TextView
+            style="@style/modify_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/buy_time" />
+
+        <EditText
+            android:id="@+id/modify_buy_time_edit"
+            style="@style/modify_title_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="@string/please_input"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:minWidth="@dimen/dp_60"
+            tools:ignore="RtlHardcoded" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/year_unit_txt"-->
+        <!--            style="@style/modify_unit_text_view"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:text="@string/year" />-->
+    </RelativeLayout>
+
+    <include layout="@layout/include_line_view" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+
+        <TextView
+            style="@style/modify_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/buy_price" />
+
+        <EditText
+            android:id="@+id/modify_buy_price_edit"
+            style="@style/modify_title_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="@string/please_input"
+            android:inputType="number"
+            android:minWidth="@dimen/dp_60"
+            tools:ignore="RtlHardcoded" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/price_unit_txt"-->
+        <!--            style="@style/modify_unit_text_view"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:text="@string/price_unit" />-->
+    </RelativeLayout>
+
+    <include layout="@layout/include_line_view" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+
+        <TextView
+            android:id="@+id/title_txt"
+            style="@style/modify_title_text_view"
+            android:layout_width="wrap_content"
+            android:maxWidth="@dimen/dp_100"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/is_selling" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/is_selling_img"-->
+        <!--            android:layout_width="@dimen/dp_20"-->
+        <!--            android:layout_height="@dimen/dp_20"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:scaleType="centerInside"-->
+        <!--            android:src="@mipmap/check_unselected"/>-->
+        <RadioGroup
+            android:id="@+id/sale_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/title_txt"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/cant_sale_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cant_sale"
+                android:maxWidth="@dimen/dp_80"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14"
+                android:buttonTint="@color/main_color"
+                tools:targetApi="lollipop" />
+
+            <RadioButton
+                android:id="@+id/can_sale_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="@dimen/dp_80"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/can_sale"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14"
+                android:buttonTint="@color/main_color"
+                tools:targetApi="lollipop"/>
+
+            <RadioButton
+                android:id="@+id/yet_sale_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="@dimen/dp_80"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="@string/yet_sale"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_14"
+                android:buttonTint="@color/main_color"
+                tools:targetApi="lollipop"/>
+        </RadioGroup>
+    </RelativeLayout>
+    <include layout="@layout/include_line_view" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+
+        <TextView
+            style="@style/modify_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/sell_price" />
+
+        <EditText
+            android:id="@+id/modify_sell_price_edit"
+            style="@style/modify_title_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="@string/please_input"
+            android:inputType="numberDecimal"
+            android:minWidth="@dimen/dp_60"
+            tools:ignore="RtlHardcoded" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/sell_unit_txt"-->
+        <!--            style="@style/modify_unit_text_view"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:text="@string/price_unit" />-->
+    </RelativeLayout>
+
+
+    <!--    <include layout="@layout/include_line_view" />-->
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/dp_50">-->
+
+    <!--        <TextView-->
+    <!--            style="@style/modify_title_text_view"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="@dimen/dp_20"-->
+    <!--            android:layout_alignParentStart="true"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:text="@string/is_sold" />-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/is_sold_img"-->
+    <!--            android:layout_width="@dimen/dp_20"-->
+    <!--            android:layout_height="@dimen/dp_20"-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:scaleType="centerInside"-->
+    <!--            android:src="@mipmap/check_unselected"/>-->
+    <!--    </RelativeLayout>-->
+</LinearLayout>

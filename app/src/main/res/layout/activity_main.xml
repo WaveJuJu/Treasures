@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_rela"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <fragment
+        android:id="@+id/fragment_container"
+        android:name="com.treasures.cn.o2o.fragment.TabNavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_home"
+        android:layout_above="@id/bottom_bar_navigation" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_above="@id/bottom_bar_navigation"
+        android:background="@color/black95" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_bar_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_49"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconTint="@drawable/main_bottom_color"
+        app:itemTextAppearanceActive="@style/bottom_selected_text"
+        app:itemTextAppearanceInactive="@style/bottom_normal_text"
+        app:itemTextColor="@drawable/main_bottom_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navigation_menu" />
+</RelativeLayout>

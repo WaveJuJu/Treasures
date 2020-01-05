@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="@dimen/dp_44"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:background="@color/transparent"
+            android:padding="@dimen/dp_10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/my_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/my_collection"
+            android:textColor="@color/title_clolor"
+            android:textSize="@dimen/sp_18" />
+
+        <Button
+            android:id="@+id/clear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@drawable/a_key_empry_button_back"
+            android:textColor="@color/main_color"
+            android:textAllCaps="false"
+            android:text="@string/a_key_empty"/>
+    </RelativeLayout>
+
+
+    <include layout="@layout/include_line_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/home_content_back"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/notDataLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_120"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/dp_121"
+            android:layout_height="@dimen/dp_110"
+            android:contentDescription="TODO"
+            android:src="@mipmap/placeholder" />
+
+        <TextView
+            android:id="@+id/not_data_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/not_data"
+            android:textColor="@color/gray_93"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="black">#ff000000</color>
+    <color name="black95">#0D000000</color>
+    <color name="black70">#B3000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="white20">#33ffffff</color>
+    <color name="white50">#80ffffff</color>
+    <color name="white40">#66ffffff</color>
+    <color name="white80">#CCffffff</color>
+    <color name="transparent">#00000002</color> <!-- 全透明 -->
+    <color name="modify_color">#4A4A4A</color>
+
+    <color name="colorWhite_t8">#8FFF</color>
+    <color name="colorWhite_tA">#AFFF</color>
+    <color name="colorWhite_tD">#D8FFFFFF</color>
+
+
+    <color name="main_color">#CB2424</color>
+    <color name="main_color_10">#1ACB2424</color>
+    <color name="main_color_80">#CCCB2424</color>
+
+    <color name="gray_9f">#9F9F9F</color>
+    <color name="gray_f4">#F4F4F4</color>
+    <color name="gray_f2">#F2F2F2</color>
+    <color name="gray_ed">#EDEDED</color>
+    <color name="gray_93">#939393</color>
+    <color name="gray_b2">#B2B2B2</color>
+    <color name="gray_d8">#D8D8D8</color>
+    <color name="gray_b2_30">#4DB2B2B2</color>
+    <color name="gray_9b_50">#809B9B9B</color>
+    <color name="gray_b1">#B1B8BD</color>
+
+    <color name="title_clolor">#323232</color>
+</resources>

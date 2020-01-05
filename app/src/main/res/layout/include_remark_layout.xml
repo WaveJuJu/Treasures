@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingEnd="@dimen/dp_15">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_140"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/modify_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_15"
+            android:text="@string/remark" />
+
+        <EditText
+            android:id="@+id/modify_remark_edit"
+            style="@style/modify_content_edit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_80"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/modify_edit_text_back"
+            android:gravity="top"
+            android:hint="@string/please_input"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+</LinearLayout>

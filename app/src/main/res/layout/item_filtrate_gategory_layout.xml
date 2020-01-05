@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/categoty_rela"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40">
+
+    <TextView
+        android:id="@+id/filtrate_type_name_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="分类名称"
+        android:textColor="@color/title_clolor"
+        android:textSize="@dimen/sp_14"
+        android:ellipsize="middle"
+        android:textStyle="normal"
+        tools:ignore="RtlSymmetry"
+        android:singleLine="true" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black95"/>
+</RelativeLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black70"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/rela_pop_view"
+        android:layout_width="@dimen/dp_344"
+        android:layout_height="@dimen/dp_145"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/white"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="@dimen/dp_30"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/title_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_73"
+                android:gravity="center"
+                android:text="@string/confirm_delete"
+                android:textAllCaps="false"
+                android:textColor="@color/title_clolor"
+                android:textSize="@dimen/sp_18" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_marginStart="@dimen/dp_22"
+                android:layout_marginEnd="@dimen/dp_22"
+                android:background="@color/title_clolor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_70"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/cancel_txt"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:text="@string/cancel"
+                    android:textColor="@color/main_color"
+                    android:textSize="@dimen/sp_18" />
+
+                <View
+                    android:layout_width="@dimen/dp_0_5"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/title_clolor" />
+
+                <TextView
+                    android:id="@+id/confirm_txt"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/confirm"
+                    android:textAllCaps="false"
+                    android:textColor="@color/gray_93"
+                    android:textSize="@dimen/sp_18" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

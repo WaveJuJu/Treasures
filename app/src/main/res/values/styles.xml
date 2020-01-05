@@ -1,0 +1,116 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <!--    <style name="AppTheme" mce_bogus="1" parent="@style/Theme.Design.NoActionBar">-->
+    <!--        <item name="android:windowAnimationStyle">@style/default_animation</item>-->
+    <!--        <item name="android:windowNoTitle">true</item>-->
+    <!--        <item name="android:windowBackground">@mipmap/login_back</item>-->
+    <!--    </style>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@mipmap/login_back</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowAnimationStyle">@style/default_animation</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <style name="AppTheme_NoAnim" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+
+    <style name="AppTheme_Transparent" mce_bogus="1" parent="@style/AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    <!--</style>-->
+    <!-- 默认Activity跳转动画 -->
+    <style name="default_animation" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="Theme.SplashTheme" parent="Theme.AppCompat.NoActionBar.FullScreen">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.AppCompat.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <declare-styleable name="CenterEdittext">
+        <attr name="isCenter" format="boolean" />
+        <attr name="isShowLeft" format="boolean" />
+        <attr name="isShowHint" format="boolean" />
+        <attr name="drawableIcon" format="reference" />
+        <attr name="isOpen" format="boolean" />
+    </declare-styleable>
+
+    <style name="bottom_normal_text">
+        <item name="android:textColor">@color/gray_9f</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+    </style>
+
+    <style name="bottom_selected_text">
+        <item name="android:textColor">@color/main_color</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+    </style>
+
+    <style name="search_edit_text" parent="Widget.AppCompat.EditText">
+        <item name="android:hint">@string/search_hint</item>
+        <item name="android:textColor">@color/title_clolor</item>
+        <item name="android:textColorHint">@color/gray_9f</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">@dimen/dp_10</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="modify_title_text_view">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/title_clolor</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="modify_unit_text_view">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/gray_93</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+    </style>
+
+    <style name="modify_title_edit" parent="modify_title_text_view">
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/gray_b2</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+        <item name="android:minWidth">@dimen/dp_80</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="modify_content_edit" parent="modify_title_text_view">
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/gray_b2</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="detail_title_txt">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/title_clolor</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:paddingLeft">@dimen/dp_4</item>
+    </style>
+    <style name="invite_code_txt">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/title_clolor</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+</resources>

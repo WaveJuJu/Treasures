@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_home"
+    app:startDestination="@id/navigation_home"
+    tools:ignore="UnusedNavigation">
+
+    <tab_fragment
+        android:id="@+id/navigation_home"
+        android:name="com.treasures.cn.o2o.fragment.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home_layout">
+        <action
+            android:id="@+id/action_navigation_home_to_modifyTreasuresActivity"
+            app:destination="@id/modifyTreasuresActivity" />
+    </tab_fragment>
+
+    <tab_fragment
+        android:id="@+id/navigation_user"
+        android:name="com.treasures.cn.o2o.fragment.UserFragment"
+        android:label="UserFragment"
+        tools:layout="@layout/fragment_user_layout">
+        <action
+            android:id="@+id/action_navigation_user_to_modifyTreasuresActivity"
+            app:destination="@id/modifyTreasuresActivity" />
+        <action
+            android:id="@+id/action_navigation_user_to_myCollectionActivity"
+            app:destination="@id/myCollectionActivity" />
+    </tab_fragment>
+
+    <tab_fragment
+        android:id="@+id/navigation_category"
+        android:name="com.treasures.cn.o2o.fragment.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category_layout" />
+
+    <activity
+        android:id="@+id/modifyTreasuresActivity"
+        android:name="com.treasures.cn.o2o.activity.ModifyTreasuresActivity"
+        android:label="ModifyTreasuresActivity" />
+    <activity
+        android:id="@+id/myCollectionActivity"
+        android:name="com.treasures.cn.o2o.activity.MyCollectionActivity"
+        android:label="MyCollectionActivity" />
+</navigation>
