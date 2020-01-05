@@ -60,7 +60,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 修改添加藏品
+ * 修改添加藏品  由于华为P30 的图片path原因  还原裁剪 自定义图片路径
  */
 public class ModifyTreasuresFragment extends BaseFragment {
     private static final String TAG = ModifyTreasuresFragment.class.getName() + "FUNCTION";
