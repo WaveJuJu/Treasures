@@ -44,6 +44,7 @@ import com.treasures.cn.utils.Constant;
 import com.treasures.cn.utils.DateTimeUtil;
 import com.treasures.cn.utils.FileUtil;
 import com.treasures.cn.utils.ImageUtils;
+import com.treasures.cn.utils.ScreenUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -352,7 +353,6 @@ public class ModifyTreasuresFragment extends BaseFragment {
                 keywordScrollView.setVisibility(View.GONE);
             }
         });
-
     }
 
     /**
@@ -477,13 +477,13 @@ public class ModifyTreasuresFragment extends BaseFragment {
         photoSelectedPopView.setClickListener(new PhotoSelectedPopView.OnPhotoClickListener() {
             @Override
             public void OnCameraClickListener() {
-                initIcon();
+                initIcon(true);
 //                openPhoto();
             }
 
             @Override
             public void OnPhotoClickListener() {
-                openPhoto();
+                initIcon(false);
             }
         });
     }
@@ -500,7 +500,7 @@ public class ModifyTreasuresFragment extends BaseFragment {
     /**
      * 初始化image path
      */
-    private void initIcon() {
+    private void initIcon(boolean isCamera) {
         File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         mCutResultFile = new File(storageDir + File.separator + treasuresId + DateTimeUtil.format(new Date(), "yyyyMMddHHmmss"));
         try {
@@ -508,8 +508,56 @@ public class ModifyTreasuresFragment extends BaseFragment {
                 mCutResultFile.delete();
             }
             mCutResultFile.createNewFile();
-            openCamera();
+            if (isCamera) {
+                openCamera();
+            } else {
+                openPhoto();
+            }
+
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 裁剪图片
+     *
+     * @param uri 相册选取的img
+     */
+    private void photoClip(Uri uri) {
+        try {
+            Intent intent = new Intent("com.android.camera.action.CROP");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+            if (resultUri == null) {
+                resultUri = Uri.fromFile(mCutResultFile);
+            }
+            // 调用系统中自带的图片剪裁
+            String IMAGE_UNSPECIFIED = "image/*";
+            intent.setDataAndType(uri, IMAGE_UNSPECIFIED);
+            intent.putExtra("crop", "true");
+            intent.putExtra("scale", true);
+//            if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
+//                //裁剪框的比例
+//                intent.putExtra("aspectX", 9998);
+//                intent.putExtra("aspectY", 9999);
+//            }else{
+//                //裁剪框的比例
+//                intent.putExtra("aspectX", 0.1);
+//                intent.putExtra("aspectY", 0.1);
+//            }
+
+            //输出图片大小
+            intent.putExtra("outputX", ScreenUtils.getWidth(getContext()));
+            intent.putExtra("outputY", ScreenUtils.getHeight(getContext()));
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            intent.putExtra("noFaceDetection", true);
+            intent.putExtra("return-data", false);
+            //设置裁剪照片完成后图片的存放地址
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, resultUri);
+            startActivityForResult(intent, Constant.RequestCode.SELECTED_PHOTO_CROP_REQUEST_CODE);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -596,20 +644,20 @@ public class ModifyTreasuresFragment extends BaseFragment {
                 if (uri == null) {
                     return;
                 }
-                String filePath = uri.getPath();
-                //从Uri获取文件绝对路径
-                if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
-                    filePath = FileUtil.getImagePathFromURI(getMActivity(), uri);
-                } else {
-                    filePath = FileUtil.getPath(getContext(), uri);
-                }
-                if (filePath == null || TextUtils.isEmpty(filePath)) {
-                    Toast.makeText(mActivity, "图片路径有误", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //压缩文件图片位图,图片长宽不处理
-                Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
-                showPhoto(bitmap, filePath);
+                photoClip(uri);
+//                //从Uri获取文件绝对路径
+//                if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
+//                    filePath = FileUtil.getImagePathFromURI(getMActivity(), uri);
+//                } else {
+//                    filePath = FileUtil.getPath(getContext(), uri);
+//                }
+//                if (filePath == null || TextUtils.isEmpty(filePath)) {
+//                    Toast.makeText(mActivity, "图片路径有误", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                //压缩文件图片位图,图片长宽不处理
+//                Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
+//                showPhoto(bitmap, filePath);
             } else if (requestCode == Constant.RequestCode.SELECTED_CAMERA_REQUEST_CODE) {
                 Uri uri = Uri.fromFile(mCutResultFile);
                 if (uri == null) {
@@ -625,7 +673,27 @@ public class ModifyTreasuresFragment extends BaseFragment {
                     bitmap = ImageUtils.rotateBitmap(bitmap, degree);//旋转bitmap
                     FileUtil.saveToFile(bitmap, mCutResultFile);//将修改好的bitmap保存在原路径
                 }
-                showPhoto(bitmap, mCutResultFile.getPath());
+//                showPhoto(bitmap, mCutResultFile.getPath());
+                photoClip(uri);
+            } else if (requestCode == Constant.RequestCode.SELECTED_PHOTO_CROP_REQUEST_CODE) {
+                Uri uri = data.getData();
+                if (uri == null) {
+                    return;
+                }
+                String filePath = uri.getPath();
+                //从Uri获取文件绝对路径
+                if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
+                    filePath = FileUtil.getImagePathFromURI(getMActivity(), uri);
+                } else {
+                    filePath = FileUtil.getPath(getContext(), uri);
+                }
+                if (filePath == null || TextUtils.isEmpty(filePath)) {
+                    Toast.makeText(mActivity, "图片路径有误", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //压缩文件图片位图,图片长宽不处理
+                Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
+                showPhoto(bitmap, filePath);
             }
         }
     }
