@@ -43,7 +43,6 @@ import com.treasures.cn.utils.BusiException;
 import com.treasures.cn.utils.Constant;
 import com.treasures.cn.utils.DateTimeUtil;
 import com.treasures.cn.utils.ImageUtils;
-import com.treasures.cn.utils.ScreenUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -546,10 +545,9 @@ public class ModifyTreasuresFragment extends BaseFragment {
 //                intent.putExtra("aspectX", 0.1);
 //                intent.putExtra("aspectY", 0.1);
 //            }
-
-            //输出图片大小
-            intent.putExtra("outputX", ScreenUtils.getWidth(getContext()));
-            intent.putExtra("outputY", ScreenUtils.getHeight(getContext()));
+//            //输出图片大小
+//            intent.putExtra("outputX", ScreenUtils.getWidth(getContext()));
+//            intent.putExtra("outputY", ScreenUtils.getHeight(getContext()));
             intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
             intent.putExtra("noFaceDetection", true);
             intent.putExtra("return-data", false);
