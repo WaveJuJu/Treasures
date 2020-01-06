@@ -12,11 +12,14 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ProjectName: Treasures
@@ -27,7 +30,55 @@ import java.io.IOException;
  * @CreateDate: 2019-12-27 22:54
  */
 public class FileUtil {
-    public static void saveToFile(Bitmap bitmap,File saveFile){
+    public static List<String> getFilesAllName(String path) {
+        //传入指定文件夹的路径
+        File file = new File(path);
+        File[] files = file.listFiles();
+        List<String> imagePaths = new ArrayList<>();
+        for (File value : files) {
+            if (checkIsImageFile(value.getPath())) {
+                imagePaths.add(value.getPath());
+            }
+        }
+        return imagePaths;
+    }
+
+    /**
+     * 删除file指定文件
+     * @param filePathName
+     * @return
+     */
+    public static boolean deleteSingleFile(String filePathName) {
+        File file = new File(filePathName);
+        // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+        if (file.exists() && file.isFile()) {
+            if (file.delete()) {
+                Log.d("deleteImg", "删除单个文件成功");
+                return true;
+            }else {
+                Log.d("deleteImg", "删除单个文件失败");
+                return false;
+            }
+        }else {
+            Log.d("deleteImg", "删除单个文件失败，不存在");
+            return false;
+        }
+    }
+    /**
+     * 判断是否是照片
+     */
+    private static boolean checkIsImageFile(String fName) {
+        boolean isImageFile = false;
+        //获取拓展名
+        String fileEnd = fName.substring(fName.lastIndexOf(".") + 1,
+                fName.length()).toLowerCase();
+        isImageFile = fileEnd.equals("jpg") || fileEnd.equals("png") || fileEnd.equals("gif")
+                || fileEnd.equals("jpeg") || fileEnd.equals("bmp");
+        return isImageFile;
+    }
+
+
+    public static void saveToFile(Bitmap bitmap, File saveFile) {
         if (saveFile.exists()) {
             saveFile.delete();
         }
@@ -36,7 +87,7 @@ public class FileUtil {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +107,7 @@ public class FileUtil {
                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
             if (cursor != null) {
-                if (cursor.moveToFirst()){
+                if (cursor.moveToFirst()) {
                     path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
                 }
                 cursor.close();
@@ -183,7 +234,7 @@ public class FileUtil {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
-    public static File uriToFile(Uri uri,Context context) {
+    public static File uriToFile(Uri uri, Context context) {
         String path = null;
         if ("file".equals(uri.getScheme())) {
             path = uri.getEncodedPath();
@@ -192,7 +243,7 @@ public class FileUtil {
                 ContentResolver cr = context.getContentResolver();
                 StringBuffer buff = new StringBuffer();
                 buff.append("(").append(MediaStore.Images.ImageColumns.DATA).append("=").append("'" + path + "'").append(")");
-                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] { MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA }, buff.toString(), null, null);
+                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA}, buff.toString(), null, null);
                 int index = 0;
                 int dataIdx = 0;
                 for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
@@ -213,7 +264,7 @@ public class FileUtil {
             }
         } else if ("content".equals(uri.getScheme())) {
             // 4.2.2以后
-            String[] proj = { MediaStore.Images.Media.DATA };
+            String[] proj = {MediaStore.Images.Media.DATA};
             Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
             if (cursor.moveToFirst()) {
                 int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);

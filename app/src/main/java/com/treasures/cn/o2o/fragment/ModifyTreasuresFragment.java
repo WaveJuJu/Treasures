@@ -42,6 +42,7 @@ import com.treasures.cn.utils.BusiConst;
 import com.treasures.cn.utils.BusiException;
 import com.treasures.cn.utils.Constant;
 import com.treasures.cn.utils.DateTimeUtil;
+import com.treasures.cn.utils.FileUtil;
 import com.treasures.cn.utils.ImageUtils;
 
 import java.io.File;
@@ -199,6 +200,7 @@ public class ModifyTreasuresFragment extends BaseFragment {
         });
         add_linear2.setVisibility(ClientApp.mInstance.isIs9Image() ? View.VISIBLE : View.GONE);
         add_linear3.setVisibility(ClientApp.mInstance.isIs9Image() ? View.VISIBLE : View.GONE);
+        treasuresId = mTreasures.getId();
         initKeywordsView();
     }
 
@@ -259,10 +261,9 @@ public class ModifyTreasuresFragment extends BaseFragment {
      */
     private void initData() {
         Date date = new Date();
-        treasuresId = String.valueOf(date.getTime());
         mTreasures = new Treasures();
         mTreasures.setCreateTime(DateTimeUtil.format(date));
-        mTreasures.setId(treasuresId);
+        mTreasures.setId(String.valueOf(date.getTime()));
     }
 
 
@@ -347,9 +348,14 @@ public class ModifyTreasuresFragment extends BaseFragment {
     }
 
     private void deleteIcon(int index) {
-        if (mTreasures.getImages().size() > index) {
-            mTreasures.getImages().remove(index);
-            reloadImg();
+        String imageName = Constant.ImageId.imageNames[index];
+        for (String url : mTreasures.getImages()){
+            if (url.contains(imageName)){
+                mTreasures.getImages().remove(url);
+                FileUtil.deleteSingleFile(url);
+                reloadImg();
+                return;
+            }
         }
     }
 
@@ -498,10 +504,20 @@ public class ModifyTreasuresFragment extends BaseFragment {
     }
 
     private void showPhoto(Bitmap bitmap, String path) {
-        if (mTreasures.getImages().size() > clickImgTag) {
-            mTreasures.getImages().set(clickImgTag, path);
-        } else if (!mTreasures.getImages().contains(path)) {
+        if (mTreasures.getImages().size() <= 0){
             mTreasures.getImages().add(path);
+        }else{
+            boolean isExist = false;//是否存在
+            for (int i = 0; i < mTreasures.getImages().size(); i++) {
+                String imgUri = mTreasures.getImages().get(i);
+                if (TextUtils.equals(imgUri, path)){
+                    isExist = true;
+                    break;
+                }
+            }
+            if (!isExist){
+                mTreasures.getImages().add(path);
+            }
         }
         reloadImg();
         resultUri = null;
