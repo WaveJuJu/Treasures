@@ -16,6 +16,7 @@
         android:text="@string/add_photo" />
 
     <LinearLayout
+        android:id="@+id/addImgLinear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_70"
         android:layout_marginTop="@dimen/dp_8"
@@ -42,6 +43,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="0"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -65,6 +67,7 @@
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
+                android:tag="1"
                 android:background="@mipmap/delete_btn"
                 android:visibility="gone"/>
         </RelativeLayout>
@@ -90,6 +93,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="2"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -114,6 +118,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="3"
                 android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>
@@ -144,6 +149,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="4"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -168,6 +174,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="5"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -192,6 +199,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="6"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -216,6 +224,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="7"
                 android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>
@@ -246,6 +255,7 @@
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentEnd="true"
                 android:background="@mipmap/delete_btn"
+                android:tag="8"
                 android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>

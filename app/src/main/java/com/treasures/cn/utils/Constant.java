@@ -40,6 +40,17 @@ public class Constant {
         public static final int REQUEST_PERMISSION = 0x88;
     }
     public static class ImageId{
+        private static final String IMAGE1 = "IMAGE1.jpg";
+        private static final String IMAGE2 = "IMAGE2.jpg";
+        private static final String IMAGE3 = "IMAGE3.jpg";
+        private static final String IMAGE4 = "IMAGE4.jpg";
+        private static final String IMAGE5 = "IMAGE5.jpg";
+        private static final String IMAGE6 = "IMAGE6.jpg";
+        private static final String IMAGE7 = "IMAGE7.jpg";
+        private static final String IMAGE8 = "IMAGE8.jpg";
+        private static final String IMAGE9 = "IMAGE9.jpg";
+        public static final String[] imageNames = {IMAGE1,IMAGE2,IMAGE3,IMAGE4,IMAGE5
+                ,IMAGE6,IMAGE7,IMAGE8,IMAGE9};
         public static final String USER_HEAD_NAME = "head_portrait.jpg";
     }
 }

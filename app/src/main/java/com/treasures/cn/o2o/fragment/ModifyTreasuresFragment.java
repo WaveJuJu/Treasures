@@ -55,6 +55,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.OnClick;
 
 /**
@@ -64,24 +65,16 @@ public class ModifyTreasuresFragment extends BaseFragment {
     private static final String TAG = ModifyTreasuresFragment.class.getName() + "FUNCTION";
     @BindView(R.id.modify_title_txt)
     TextView modifyTitleTxt;
-    @BindView(R.id.add_img1)
-    RoundedImageView addImg1;
-    @BindView(R.id.add_img2)
-    RoundedImageView addImg2;
-    @BindView(R.id.add_img3)
-    RoundedImageView addImg3;
-    @BindView(R.id.add_img4)
-    RoundedImageView addImg4;
-    @BindView(R.id.add_img5)
-    RoundedImageView addImg5;
-    @BindView(R.id.add_img6)
-    RoundedImageView addImg6;
-    @BindView(R.id.add_img7)
-    RoundedImageView addImg7;
-    @BindView(R.id.add_img8)
-    RoundedImageView addImg8;
-    @BindView(R.id.add_img9)
-    RoundedImageView addImg9;
+    @BindViews({R.id.add_img1, R.id.add_img2, R.id.add_img3, R.id.add_img4, R.id.add_img5, R.id.add_img6
+            , R.id.add_img7, R.id.add_img8, R.id.add_img9})
+    List<RoundedImageView> addImages;
+    @BindViews({R.id.delete_img1_btn, R.id.delete_img2_btn, R.id.delete_img3_btn, R.id.delete_img4_btn
+            , R.id.delete_img5_btn, R.id.delete_img6_btn, R.id.delete_img7_btn, R.id.delete_img8_btn, R.id.delete_img9_btn})
+    List<Button> deleteBtns;
+
+    @BindView(R.id.addImgLinear)
+    LinearLayout addImgLinear;
+
     private int clickImgTag = 0;
     private Treasures mTreasures;
     private String treasuresId;
@@ -128,24 +121,6 @@ public class ModifyTreasuresFragment extends BaseFragment {
     @BindView(R.id.modify_save_btn)
     Button modifySaveBtn;
 
-    @BindView(R.id.delete_img1_btn)
-    Button deleteImg1Btn;
-    @BindView(R.id.delete_img2_btn)
-    Button deleteImg2Btn;
-    @BindView(R.id.delete_img3_btn)
-    Button deleteImg3Btn;
-    @BindView(R.id.delete_img4_btn)
-    Button deleteImg4Btn;
-    @BindView(R.id.delete_img5_btn)
-    Button deleteImg5Btn;
-    @BindView(R.id.delete_img6_btn)
-    Button deleteImg6Btn;
-    @BindView(R.id.delete_img7_btn)
-    Button deleteImg7Btn;
-    @BindView(R.id.delete_img8_btn)
-    Button deleteImg8Btn;
-    @BindView(R.id.delete_img9_btn)
-    Button deleteImg9Btn;
     @BindView(R.id.keywordScrollView)
     HorizontalScrollView keywordScrollView;
     @BindView(R.id.keywordContentLinear)
@@ -251,71 +226,32 @@ public class ModifyTreasuresFragment extends BaseFragment {
         yetSaleRb.setChecked(mTreasures.getSoldType() == 1);
     }
 
-    private void reloadImg() {
+    private String getImgUrl(String name) {
         List<String> urls = mTreasures.getImages();
-        if (urls.size() > 0) {
-            addImg1.post(() -> {
-                Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(0));
-                deleteImg1Btn.setVisibility(View.VISIBLE);
-                addImg1.setImageBitmap(mBitmap);
-            });
-            if (urls.size() > 1) {
-                addImg2.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(1));
-                    deleteImg2Btn.setVisibility(View.VISIBLE);
-                    addImg2.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 2) {
-                addImg3.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(2));
-                    deleteImg3Btn.setVisibility(View.VISIBLE);
-                    addImg3.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 3) {
-                addImg4.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(3));
-                    deleteImg4Btn.setVisibility(View.VISIBLE);
-                    addImg4.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 4) {
-                addImg5.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(4));
-                    deleteImg5Btn.setVisibility(View.VISIBLE);
-                    addImg5.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 5) {
-                addImg6.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(5));
-                    deleteImg6Btn.setVisibility(View.VISIBLE);
-                    addImg6.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 6) {
-                addImg7.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(6));
-                    deleteImg7Btn.setVisibility(View.VISIBLE);
-                    addImg7.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 7) {
-                addImg8.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(7));
-                    deleteImg8Btn.setVisibility(View.VISIBLE);
-                    addImg8.setImageBitmap(mBitmap);
-                });
-            }
-            if (urls.size() > 8) {
-                addImg9.post(() -> {
-                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), urls.get(8));
-                    deleteImg9Btn.setVisibility(View.VISIBLE);
-                    addImg9.setImageBitmap(mBitmap);
-                });
+        for (String url : urls) {
+            if (url.contains(name)) {
+                return url;
             }
         }
+        return "";
+    }
+
+    private void reloadImg() {
+        addImgLinear.post(() -> {
+            for (RoundedImageView imageView : addImages) {
+                int tag = Integer.valueOf((String) imageView.getTag());
+                String imageName = Constant.ImageId.imageNames[tag];
+                String imageUrl = getImgUrl(imageName);
+                if (!TextUtils.isEmpty(imageUrl)) {
+                    Bitmap mBitmap = ImageUtils.getScaleBitmap(getContext(), imageUrl);
+                    deleteBtns.get(tag).setVisibility(View.VISIBLE);
+                    imageView.setImageBitmap(mBitmap);
+                } else {
+                    deleteBtns.get(tag).setVisibility(View.GONE);
+                    imageView.setImageResource(R.mipmap.add_img_back);
+                }
+            }
+        });
     }
 
     /**
@@ -394,67 +330,18 @@ public class ModifyTreasuresFragment extends BaseFragment {
                 showPhotoSelectedPop();
                 break;
             case R.id.delete_img1_btn:
-                deleteImg1Btn.post(() -> {
-                    deleteImg1Btn.setVisibility(View.GONE);
-                    deleteIcon(0);
-                    addImg1.setImageResource(R.mipmap.add_img_back);
-                });
-                break;
             case R.id.delete_img2_btn:
-                deleteImg2Btn.post(() -> {
-                    deleteImg2Btn.setVisibility(View.GONE);
-                    deleteIcon(1);
-                    addImg2.setImageResource(R.mipmap.add_img_back);
-                });
-                break;
             case R.id.delete_img3_btn:
-                deleteImg3Btn.post(() -> {
-                    deleteImg3Btn.setVisibility(View.GONE);
-                    deleteIcon(2);
-                    addImg3.setImageResource(R.mipmap.add_img_back);
-                });
-                break;
             case R.id.delete_img4_btn:
-                deleteImg4Btn.post(() -> {
-                    deleteImg4Btn.setVisibility(View.GONE);
-                    deleteIcon(3);
-                    addImg4.setImageResource(R.mipmap.add_img_back);
-                });
-                break;
+
             case R.id.delete_img5_btn:
-                deleteImg5Btn.post(() -> {
-                    deleteImg4Btn.setVisibility(View.GONE);
-                    deleteIcon(4);
-                    addImg5.setImageResource(R.mipmap.add_img_back);
-                });
-                break;
+
             case R.id.delete_img6_btn:
-                deleteImg6Btn.post(() -> {
-                    deleteImg6Btn.setVisibility(View.GONE);
-                    addImg6.setImageResource(R.mipmap.add_img_back);
-                    deleteIcon(5);
-                });
-                break;
             case R.id.delete_img7_btn:
-                deleteImg7Btn.post(() -> {
-                    deleteImg7Btn.setVisibility(View.GONE);
-                    addImg7.setImageResource(R.mipmap.add_img_back);
-                    deleteIcon(6);
-                });
-                break;
             case R.id.delete_img8_btn:
-                deleteImg8Btn.post(() -> {
-                    deleteImg8Btn.setVisibility(View.GONE);
-                    addImg8.setImageResource(R.mipmap.add_img_back);
-                    deleteIcon(7);
-                });
-                break;
             case R.id.delete_img9_btn:
-                deleteImg9Btn.post(() -> {
-                    deleteImg9Btn.setVisibility(View.GONE);
-                    addImg9.setImageResource(R.mipmap.add_img_back);
-                    deleteIcon(8);
-                });
+                int tag = Integer.valueOf((String) view.getTag());
+                deleteIcon(tag);
                 break;
         }
     }
@@ -475,13 +362,12 @@ public class ModifyTreasuresFragment extends BaseFragment {
         photoSelectedPopView.setClickListener(new PhotoSelectedPopView.OnPhotoClickListener() {
             @Override
             public void OnCameraClickListener() {
-                initIcon(true);
-//                openPhoto();
+                initIcon(true, clickImgTag);
             }
 
             @Override
             public void OnPhotoClickListener() {
-                initIcon(false);
+                initIcon(false, clickImgTag);
             }
         });
     }
@@ -495,12 +381,18 @@ public class ModifyTreasuresFragment extends BaseFragment {
         builder.show();
     }
 
+
     /**
      * 初始化image path
      */
-    private void initIcon(boolean isCamera) {
+    private void initIcon(boolean isCamera, int tag) {
+        String imageName = Constant.ImageId.imageNames[tag];
+        if (TextUtils.isEmpty(imageName)) {
+            Toast.makeText(getMActivity(), "没有可用图片name", Toast.LENGTH_SHORT).show();
+            return;
+        }
         File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        mCutResultFile = new File(storageDir + File.separator + treasuresId + DateTimeUtil.format(new Date(), "yyyyMMddHHmmss"));
+        mCutResultFile = new File(storageDir + File.separator + treasuresId + imageName);//DateTimeUtil.format(new Date(), "yyyyMMddHHmmss"));
         try {
             if (mCutResultFile.exists()) {
                 mCutResultFile.delete();
