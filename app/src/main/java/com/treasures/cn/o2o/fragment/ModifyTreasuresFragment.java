@@ -42,7 +42,6 @@ import com.treasures.cn.utils.BusiConst;
 import com.treasures.cn.utils.BusiException;
 import com.treasures.cn.utils.Constant;
 import com.treasures.cn.utils.DateTimeUtil;
-import com.treasures.cn.utils.FileUtil;
 import com.treasures.cn.utils.ImageUtils;
 import com.treasures.cn.utils.ScreenUtils;
 
@@ -60,7 +59,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 修改添加藏品  由于华为P30 的图片path原因  还原裁剪 自定义图片路径
+ * 修改添加藏品
  */
 public class ModifyTreasuresFragment extends BaseFragment {
     private static final String TAG = ModifyTreasuresFragment.class.getName() + "FUNCTION";
@@ -576,7 +575,6 @@ public class ModifyTreasuresFragment extends BaseFragment {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 200);
                 return;
             }
-
         }
         // 打开系统拍照页面
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -645,53 +643,18 @@ public class ModifyTreasuresFragment extends BaseFragment {
                     return;
                 }
                 photoClip(uri);
-//                //从Uri获取文件绝对路径
-//                if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
-//                    filePath = FileUtil.getImagePathFromURI(getMActivity(), uri);
-//                } else {
-//                    filePath = FileUtil.getPath(getContext(), uri);
-//                }
-//                if (filePath == null || TextUtils.isEmpty(filePath)) {
-//                    Toast.makeText(mActivity, "图片路径有误", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                //压缩文件图片位图,图片长宽不处理
-//                Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
-//                showPhoto(bitmap, filePath);
             } else if (requestCode == Constant.RequestCode.SELECTED_CAMERA_REQUEST_CODE) {
                 Uri uri = Uri.fromFile(mCutResultFile);
                 if (uri == null) {
                     return;
                 }
-                //从Uri获取文件绝对路径
-                String filePath = FileUtil.getPath(getContext(), uri);
-                //压缩文件图片位图,图片长宽不处理
-                Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
-                //处理有的相机拍摄的图片角度问题
-                int degree = ImageUtils.getBitmapDegree(filePath);//读取图片的旋转的角度
-                if (degree != 0) {
-                    bitmap = ImageUtils.rotateBitmap(bitmap, degree);//旋转bitmap
-                    FileUtil.saveToFile(bitmap, mCutResultFile);//将修改好的bitmap保存在原路径
-                }
-//                showPhoto(bitmap, mCutResultFile.getPath());
                 photoClip(uri);
             } else if (requestCode == Constant.RequestCode.SELECTED_PHOTO_CROP_REQUEST_CODE) {
-                Uri uri = data.getData();
+                Uri uri = resultUri;
                 if (uri == null) {
                     return;
                 }
                 String filePath = uri.getPath();
-                //从Uri获取文件绝对路径
-                if (Build.MANUFACTURER.equalsIgnoreCase("HUAWEI")) {
-                    filePath = FileUtil.getImagePathFromURI(getMActivity(), uri);
-                } else {
-                    filePath = FileUtil.getPath(getContext(), uri);
-                }
-                if (filePath == null || TextUtils.isEmpty(filePath)) {
-                    Toast.makeText(mActivity, "图片路径有误", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //压缩文件图片位图,图片长宽不处理
                 Bitmap bitmap = ImageUtils.getScaleBitmap(getContext(), filePath);
                 showPhoto(bitmap, filePath);
             }
