@@ -1,6 +1,8 @@
 package com.treasures.cn.o2o.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -11,6 +13,9 @@ import com.treasures.cn.o2o.BaseActivity;
 import com.treasures.cn.o2o.activity.login.LoginActivity;
 import com.treasures.cn.o2o.fragment.TabNavHostFragment;
 
+import org.jetbrains.annotations.NotNull;
+
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.navigation.NavController;
@@ -41,7 +46,18 @@ public class MainActivity extends BaseActivity {
         navHostFragment = (TabNavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);
+        }
+
         toLoginActivity();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
+        super .onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void toLoginActivity() {

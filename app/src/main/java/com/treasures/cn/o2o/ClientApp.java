@@ -13,6 +13,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.treasures.cn.handler.DataInitializer;
 import com.treasures.cn.utils.UtilBox;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
 import java.lang.reflect.Field;
@@ -41,8 +42,7 @@ public class ClientApp extends Application {
 //        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 //        StrictMode.setVmPolicy(builder.build());
 //        builder.detectFileUriExposure();
-        UMConfigure.init(this,"5e0068fc570df337eb000148"
-                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+
         UMShareAPI.get(this);
         setIs9Image(false);
 
@@ -53,8 +53,15 @@ public class ClientApp extends Application {
         StrictMode.setVmPolicy(builder.build());
 
         CrashReport.initCrashReport(getApplicationContext(), "66cc05226f", false);
+
+        initUmeng();
     }
 
+    private void initUmeng(){
+        UMConfigure.init(this,"5e0068fc570df337eb000148"
+                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+        PlatformConfig.setWeixin("wx6e9e5b4b5da3d03a", "d0d47224beb4dcdcdd5d753b28fd2822");
+    }
     /**
      * popwindow覆盖到顶部
      *

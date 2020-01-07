@@ -114,6 +114,7 @@ public class PhotoPageActivity extends BaseActivity {
 
             }
         });
+
     }
 
     private void showShareImagePop(int position){
@@ -127,7 +128,7 @@ public class PhotoPageActivity extends BaseActivity {
 
     private void startShareTreasures(Bitmap bitmap, BusiConst.ShareType shareType) {
         UMImage image = new UMImage(getMActivity(), bitmap);//bitmap文件
-        image.compressStyle = UMImage.CompressStyle.QUALITY;
+        image.compressStyle = UMImage.CompressStyle.SCALE;
         new ShareAction(getMActivity())
                 .setPlatform(TextUtils.equals(shareType.toString()
                         , BusiConst.ShareType.WECHAT_FRIENDS.toString())
