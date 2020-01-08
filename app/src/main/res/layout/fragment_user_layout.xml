@@ -266,7 +266,8 @@
                 android:textSize="@dimen/sp_12"
                 android:layout_marginTop="@dimen/dp_36"
                 android:textColor="@color/gray_9f"
-                tools:ignore="RtlHardcoded" />
+                tools:ignore="RtlHardcoded"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

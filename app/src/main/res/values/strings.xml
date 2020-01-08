@@ -109,5 +109,8 @@
     <string name="total_in_price">总进价</string>
     <string name="must_input">(必填项)</string>
     <string name="do_hint">长按条目！\n修改、复制、删除藏品</string>
+    <string name="save_img">保存图片</string>
+    <string name="share_img">分享图片</string>
+    <string name="save_success">保存成功</string>
 
 </resources>

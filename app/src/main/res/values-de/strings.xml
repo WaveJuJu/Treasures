@@ -110,4 +110,7 @@
 	<string name="total_in_price">Der Gesamtkaufpreis</string>
 	<string name="must_input">(Erforderlich)</string>
 	<string name="do_hint">Lange Presse!\nSammlungen modifizieren, kopieren und löschen</string>
+	<string name="save_img">Bilder speichern</string>
+	<string name="share_img">Bilder teilen</string>
+	<string name="save_success">Speichern erfolgreich</string>
 </resources>

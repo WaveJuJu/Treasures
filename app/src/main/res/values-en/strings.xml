@@ -110,4 +110,7 @@
 	<string name="total_in_price">The total purchase price</string>
 	<string name="must_input">(Required)</string>
 	<string name="do_hint">Long press entry! \n modify, copy and delete items</string>
+	<string name="save_img">Save pictures</string>
+	<string name="share_img">Sharing pictures</string>
+	<string name="save_success">Save successfully</string>
 </resources>
