@@ -340,7 +340,9 @@ public class HomeFragment extends BaseFragment {
                 case Constant.ModifyAction.COPY:
                     Date date = new Date();
                     Bundle bundleCopy = new Bundle();
-                    treasures.setId(String.valueOf(date.getTime()));
+                    String treasureId = String.valueOf(date.getTime());
+                    treasures.setId(treasureId);
+                    treasures.setImages(TreasuresHelp.getCopyImgPath(treasureId,treasures.getImages()));
                     bundleCopy.putSerializable(Constant.BundleKey.MODIFY_TREASURES, treasures);
                     bundleCopy.putString(Constant.BundleKey.MODIFY_TYPE, BusiConst.ModifyType.COPY.toString());
                     Navigation.findNavController(add_treasures_btn)
@@ -406,7 +408,7 @@ public class HomeFragment extends BaseFragment {
     private class ClassOfTextWatcher implements TextWatcher {
         private TextView view;
 
-        public ClassOfTextWatcher(View view) {
+        ClassOfTextWatcher(View view) {
 
             if (view instanceof TextView)
                 this.view = (TextView) view;

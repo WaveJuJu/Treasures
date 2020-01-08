@@ -5,8 +5,11 @@ import android.text.TextUtils;
 import com.treasures.cn.entity.CategoryType;
 import com.treasures.cn.entity.FuzzySearch;
 import com.treasures.cn.entity.Treasures;
+import com.treasures.cn.o2o.ClientApp;
 import com.treasures.cn.utils.BusiConst;
 import com.treasures.cn.utils.BusiException;
+import com.treasures.cn.utils.Constant;
+import com.treasures.cn.utils.FileUtil;
 import com.treasures.cn.utils.comm.Asyc;
 import com.treasures.cn.utils.comm.Callback;
 import com.treasures.cn.utils.comm.ExecuteAndReturn;
@@ -277,4 +280,24 @@ public class TreasuresHelp {
     }
 
 
+
+    public static List<String> getCopyImgPath(String id,List<String> oldPaths) {
+        List<String> newPathArr = new ArrayList<>();
+        for (String imgUri : oldPaths){
+            String imageName = getCopyImageName(imgUri);
+            String newPath = ClientApp.mInstance.mTreasureFile + id + imageName;
+            if (FileUtil.fileCopy(imgUri, newPath)){
+                newPathArr.add(newPath);
+            }
+        }
+        return newPathArr;
+    }
+    private static String getCopyImageName(String imgPath){
+        for (String name:Constant.ImageId.imageNames){
+            if (imgPath.contains(name)){
+                return name;
+            }
+        }
+        return "";
+    }
 }

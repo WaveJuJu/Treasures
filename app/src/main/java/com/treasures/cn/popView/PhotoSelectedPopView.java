@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.treasures.cn.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,6 +28,11 @@ public class PhotoSelectedPopView {
     private Activity mActivity;
     private PopupWindow popView;
     private int layoutId;
+    @BindView(R.id.photo_txt)
+    TextView photo_txt;
+    @BindView(R.id.camera_txt)
+    TextView camera_txt;
+
     public PhotoSelectedPopView(Activity activity, int layoutId) {
         this.mActivity = activity;
         this.layoutId = layoutId;
@@ -44,6 +51,14 @@ public class PhotoSelectedPopView {
 
     public void show() {
         if (popView != null && !popView.isShowing()) {
+            popView.showAtLocation(mActivity.findViewById(layoutId), Gravity.BOTTOM, 0, 0);
+        }
+    }
+
+    public void show(String topName,String bottomName){
+        if (popView != null && !popView.isShowing()) {
+            photo_txt.setText(topName);
+            camera_txt.setText(bottomName);
             popView.showAtLocation(mActivity.findViewById(layoutId), Gravity.BOTTOM, 0, 0);
         }
     }

@@ -110,4 +110,7 @@
 	<string name="total_in_price">總進價</string>
 	<string name="must_input">(必填項)</string>
 	<string name="do_hint">長按條目！\n修蓋、複製、刪除藏品 </string>
+	<string name="save_img">保存图片</string>
+	<string name="share_img">分享图片</string>
+	<string name="save_success">保存成功</string>
 </resources>
