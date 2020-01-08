@@ -304,7 +304,7 @@ public class TreasureDetailActivity extends BaseActivity {
 
     private void startShareTreasures(Bitmap bitmap, BusiConst.ShareType shareType) {
         UMImage image = new UMImage(getMActivity(), bitmap);//bitmap文件
-        image.compressStyle = UMImage.CompressStyle.SCALE;
+        image.compressStyle = UMImage.CompressStyle.QUALITY;
         new ShareAction(getMActivity())
                 .setPlatform(TextUtils.equals(shareType.toString()
                         , BusiConst.ShareType.WECHAT_FRIENDS.toString())

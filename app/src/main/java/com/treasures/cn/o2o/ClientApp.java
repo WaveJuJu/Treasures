@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.widget.PopupWindow;
 
@@ -16,11 +17,14 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 public class ClientApp extends Application {
     public static ClientApp mInstance;
     private boolean is9Image;
+
+    public File mTreasureFile;
     public ClientApp() {
         super();
         mInstance = this;
@@ -55,12 +59,18 @@ public class ClientApp extends Application {
         CrashReport.initCrashReport(getApplicationContext(), "66cc05226f", false);
 
         initUmeng();
+        initImgFile();
     }
 
     private void initUmeng(){
         UMConfigure.init(this,"5e0068fc570df337eb000148"
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
         PlatformConfig.setWeixin("wx6e9e5b4b5da3d03a", "d0d47224beb4dcdcdd5d753b28fd2822");
+    }
+
+    private void initImgFile(){
+        File storageDir = ClientApp.mInstance.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        mTreasureFile = new File(storageDir + File.separator);
     }
     /**
      * popwindow覆盖到顶部

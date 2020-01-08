@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -397,8 +396,8 @@ public class ModifyTreasuresFragment extends BaseFragment {
             Toast.makeText(getMActivity(), "没有可用图片name", Toast.LENGTH_SHORT).show();
             return;
         }
-        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        mCutResultFile = new File(storageDir + File.separator + treasuresId + imageName);//DateTimeUtil.format(new Date(), "yyyyMMddHHmmss"));
+
+        mCutResultFile = new File(ClientApp.mInstance.mTreasureFile + treasuresId + imageName);//DateTimeUtil.format(new Date(), "yyyyMMddHHmmss"));
         try {
             if (mCutResultFile.exists()) {
                 mCutResultFile.delete();

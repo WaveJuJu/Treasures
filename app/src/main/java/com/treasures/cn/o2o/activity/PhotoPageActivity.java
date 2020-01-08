@@ -12,9 +12,11 @@ import com.treasures.cn.R;
 import com.treasures.cn.entity.Treasures;
 import com.treasures.cn.o2o.BaseActivity;
 import com.treasures.cn.o2o.adapter.PhotoPagerAdapter;
+import com.treasures.cn.popView.PhotoSelectedPopView;
 import com.treasures.cn.popView.ShareTreasurePopView;
 import com.treasures.cn.utils.BusiConst;
 import com.treasures.cn.utils.Constant;
+import com.treasures.cn.utils.FileUtil;
 import com.treasures.cn.utils.ImageUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -71,7 +73,7 @@ public class PhotoPageActivity extends BaseActivity {
 
             @Override
             public void OnLongItemClick(int position) {
-                showShareImagePop(position);
+                showPhotoSelectedPop(position);
             }
         });
         viewPager.setAdapter(mPagerAdapter);
@@ -117,8 +119,35 @@ public class PhotoPageActivity extends BaseActivity {
 
     }
 
-    private void showShareImagePop(int position){
-        if (mTreasure.getImages().size() > position){
+    /**
+     * 图片操作弹窗
+     */
+    private void showPhotoSelectedPop(final int position) {
+        PhotoSelectedPopView photoSelectedPopView = new PhotoSelectedPopView(mActivity, R.id.photo_main_rela);
+        photoSelectedPopView.show(getMActivity().getString(R.string.save_img)
+                , getMActivity().getString(R.string.share_img));
+        photoSelectedPopView.setClickListener(new PhotoSelectedPopView.OnPhotoClickListener() {
+            @Override
+            public void OnCameraClickListener() {//分享图片
+                showShareImagePop(position);
+            }
+
+            @Override
+            public void OnPhotoClickListener() {//保存图片
+                boolean isSuccess = false;
+                if (mTreasure.getImages().size() > position) {
+                    Bitmap bitmapImg = ImageUtils.getScaleBitmap(getMActivity().getApplicationContext()
+                            , mTreasure.getImages().get(position));
+                    isSuccess = FileUtil.saveTreasuresImgToPhoto(getMActivity().getApplicationContext(), bitmapImg);
+                }
+                Toast.makeText(getMActivity(), getMActivity().getString(
+                        isSuccess ? R.string.save_success : R.string.save_failure), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showShareImagePop(int position) {
+        if (mTreasure.getImages().size() > position) {
             Bitmap bitmapImg = ImageUtils.getScaleBitmap(getMActivity().getApplicationContext(), mTreasure.getImages().get(position));
             ShareTreasurePopView shareTreasurePopView = new ShareTreasurePopView(mActivity, bitmapImg, R.id.photo_main_rela);
             shareTreasurePopView.showShareImg();
@@ -128,7 +157,7 @@ public class PhotoPageActivity extends BaseActivity {
 
     private void startShareTreasures(Bitmap bitmap, BusiConst.ShareType shareType) {
         UMImage image = new UMImage(getMActivity(), bitmap);//bitmap文件
-        image.compressStyle = UMImage.CompressStyle.SCALE;
+        image.compressStyle = UMImage.CompressStyle.QUALITY;
         new ShareAction(getMActivity())
                 .setPlatform(TextUtils.equals(shareType.toString()
                         , BusiConst.ShareType.WECHAT_FRIENDS.toString())

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,7 +15,10 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.treasures.cn.R;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,6 +81,38 @@ public class FileUtil {
         return isImageFile;
     }
 
+    /**
+     * 复制文件到新路径
+     */
+    public static boolean fileCopy(String oldFilePath,String newFilePath) {
+        File file = new File(oldFilePath);
+        //如果原文件不存在
+        if(!file.exists()){
+            return false;
+        }
+        //获得原文件流
+
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(oldFilePath));
+            byte[] data = new byte[1024];
+            //输出流
+            FileOutputStream outputStream =new FileOutputStream(new File(newFilePath));
+            //开始处理流
+            while (inputStream.read(data) != -1) {
+                outputStream.write(data);
+            }
+            inputStream.close();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     public static void saveToFile(Bitmap bitmap, File saveFile) {
         if (saveFile.exists()) {
@@ -277,6 +313,46 @@ public class FileUtil {
             //Log.i(TAG, "Uri Scheme:" + uri.getScheme());
         }
         return null;
+    }
+
+    /**
+     * 保存图片到相册
+     * @param context
+     * @param bmp
+     * @return
+     */
+    public static boolean saveTreasuresImgToPhoto(Context context, Bitmap bmp) {
+        // 首先保存图片
+        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
+                + context.getString(R.string.app_name);
+        File appDir = new File(storePath);
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = System.currentTimeMillis() + ".jpg";
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            //通过io流的方式来压缩保存图片
+            boolean isSuccess = bmp.compress(Bitmap.CompressFormat.JPEG, 60, fos);
+            fos.flush();
+            fos.close();
+
+            //把文件插入到系统图库
+            //MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), fileName, null);
+
+            //保存图片后发送广播通知更新数据库
+            Uri uri = Uri.fromFile(file);
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+            if (isSuccess) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
