@@ -5,7 +5,8 @@ public class Constant {
     public final static int PAGE_COUNT = 20;
     public static final String REGISTERED_ACTIVITY_KEY = "REGISTERED_ACTIVITY_KEY";
     public static final String start_figure = "http://www.scgj.de/start.jpg"; //启动图R
-
+    public static final String advertis_url = "http://www.scgj.de/all";
+    public static final String privacy_url = "http://scgj.de/Privacy.htm";
     public static class FRAGMENT {
         public static final int FRAGMENT_HOME_TAG = 0;
         public static final int FRAGMENT_CATEGORY_TAG= 1;

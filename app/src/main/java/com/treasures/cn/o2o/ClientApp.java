@@ -3,6 +3,7 @@ package com.treasures.cn.o2o;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -48,7 +49,7 @@ public class ClientApp extends Application {
 //        builder.detectFileUriExposure();
 
         UMShareAPI.get(this);
-        setIs9Image(false);
+        setIs9Image(true);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         if (Build.VERSION.SDK_INT >= 18){
@@ -133,6 +134,20 @@ public class ClientApp extends Application {
             PackageInfo info = manager.getPackageInfo(getInstance().getPackageName(), 0);
             return Integer.toString(info.versionCode);
         } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * 获取app包内的渠道标识
+     */
+    public static String getChannel(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            ApplicationInfo appInfo = manager.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData.getString("UMENG_CHANNEL");
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return "";
         }

@@ -2,17 +2,24 @@ package com.treasures.cn.o2o.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.treasures.cn.R;
+import com.treasures.cn.handler.MemoryData;
 import com.treasures.cn.o2o.BaseActivity;
 import com.treasures.cn.utils.Constant;
 import com.treasures.cn.utils.ScreenUtils;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 
 /**
@@ -45,7 +52,7 @@ public class WelcomeActivity extends BaseActivity {
                     .load(Constant.start_figure)
                     .priority(Priority.IMMEDIATE)
                     .placeholder(R.mipmap.login_back)
-                    .error(R.color.white)
+                    .error(R.mipmap.login_back)
                     .override(ScreenUtils.getWidth(getApplicationContext()),ScreenUtils.getHeight(getApplicationContext()))
                     .into(welcome_img);
         });
@@ -62,6 +69,12 @@ public class WelcomeActivity extends BaseActivity {
     };  //消息处理对象,负责发送与处理消息
 
     public void getHome() {
+        if (!MemoryData.USER_INFO.isPrivacy()) {
+            Intent intent = new Intent(WelcomeActivity.this, PrivacyWebActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

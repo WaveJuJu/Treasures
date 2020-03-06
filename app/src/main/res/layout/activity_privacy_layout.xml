@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/privacy_rights"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16" />
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_1"
+        android:background="@color/gray_b2"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/not_agreed_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:background="@color/white"
+            android:text="@string/not_agree"
+            android:textColor="@color/gray_93"/>
+
+        <View
+            android:layout_width="@dimen/dp_0_1"
+            android:layout_height="match_parent"
+            android:background="@color/gray_b2" />
+
+        <Button
+            android:id="@+id/agreed_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_16"
+            android:background="@color/white"
+            android:text="@string/agree"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>
