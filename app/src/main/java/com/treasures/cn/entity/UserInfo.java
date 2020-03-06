@@ -11,6 +11,7 @@ public class UserInfo implements Serializable {
     private String password = "";
     private String headerImgPath = "";
     private String inviteCode = "";
+    private boolean isPrivacy = false; //是否同意了隐私权限
     private List<String> inviteCodeArr = new ArrayList<>();
 
     public String getCreateTime() {
@@ -67,5 +68,13 @@ public class UserInfo implements Serializable {
 
     public void setInviteCodeArr(List<String> inviteCodeArr) {
         this.inviteCodeArr = inviteCodeArr;
+    }
+
+    public boolean isPrivacy() {
+        return isPrivacy;
+    }
+
+    public void setPrivacy(boolean privacy) {
+        isPrivacy = privacy;
     }
 }

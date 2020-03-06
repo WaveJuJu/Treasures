@@ -112,5 +112,9 @@
     <string name="save_img">保存图片</string>
     <string name="share_img">分享图片</string>
     <string name="save_success">保存成功</string>
+    <string name="not_agree" translatable="false">不同意</string>
+    <string name="agree" translatable="false">同意</string>
+    <string name="privacy_rights" translatable="false">隐私政策</string>
+
 
 </resources>

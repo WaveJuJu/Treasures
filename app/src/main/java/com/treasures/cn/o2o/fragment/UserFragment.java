@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import com.treasures.cn.o2o.BaseFragment;
 import com.treasures.cn.o2o.ClientApp;
 import com.treasures.cn.o2o.activity.DataStatisticsActivity;
 import com.treasures.cn.o2o.activity.InviteCodeActivity;
+import com.treasures.cn.o2o.activity.PrivacyWebActivity;
+import com.treasures.cn.o2o.activity.WelcomeActivity;
 import com.treasures.cn.o2o.activity.login.RegisteredActivity;
 import com.treasures.cn.popView.PhotoSelectedPopView;
 import com.treasures.cn.utils.BusiConst;
@@ -55,6 +58,8 @@ public class UserFragment extends BaseFragment {
     RoundedImageView userHearImg;
     @BindView(R.id.version_txt)
     TextView version_txt;
+    @BindView(R.id.privacy_rights_txt)
+    TextView privacy_rights_txt;
     private Uri resultUri = null;
     private File mCutResultFile;  //裁剪图片存储路径
 
@@ -97,12 +102,14 @@ public class UserFragment extends BaseFragment {
         });
 
         version_txt.post(()-> version_txt.setText(ClientApp.getVersion()+"("+ClientApp.getBuildVersion()+")"));
+        privacy_rights_txt.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        privacy_rights_txt.getPaint().setAntiAlias(true);//抗锯齿
     }
 
     @OnClick({R.id.add_password_rela, R.id.user_hear_img
             , R.id.my_collection_rela, R.id.delete_rela
             , R.id.user_name_txt, R.id.invite_code_rela
-            , R.id.data_rela})
+            , R.id.data_rela,R.id.privacy_rights_txt})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_password_rela:
@@ -135,6 +142,10 @@ public class UserFragment extends BaseFragment {
                 break;
             case R.id.data_rela:
                 DataStatisticsActivity.openDataStatisticsActivity(getMActivity());
+                break;
+            case R.id.privacy_rights_txt:
+                Intent intent = new Intent(getMActivity(), PrivacyWebActivity.class);
+                startActivity(intent);
                 break;
         }
     }
